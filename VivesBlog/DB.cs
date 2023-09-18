@@ -29,7 +29,7 @@ namespace VivesBlog
 
             var firstArticle = new Article
             {
-                Key = 1,
+                Id = 1,
                 Title = "First article title",
                 Description = "Short description of first article",
                 Content = "The first article",
@@ -40,7 +40,7 @@ namespace VivesBlog
 
             var secondArticle = new Article
             {
-                Key = 2,
+                Id = 2,
                 Title = "Second article title",
                 Description = "Short description of second article",
                 Content = "The second article",

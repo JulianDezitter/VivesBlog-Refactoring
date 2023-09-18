@@ -7,7 +7,7 @@ namespace VivesBlog
     public class Article
     {
         [Key]
-        public int Key { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Title { get; set; }
         [Required]
@@ -27,10 +27,7 @@ namespace VivesBlog
     }
     public class Person
     {
-        public Person()
-        {
-            Articles = new List<Article>();
-        }
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -39,6 +36,6 @@ namespace VivesBlog
         [Required]
         public string Name2 { get; set; }
 
-        public IList<Article> Articles { get; set; }
+        public IList<Article> Articles { get; set; } = new List<Article>();
     }
 }

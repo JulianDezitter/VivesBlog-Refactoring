@@ -1,39 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
 
 namespace VivesBlog.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly DB _database;
+        private readonly DbService _dbService;
 
-        public HomeController()
+        public HomeController(DbService service)
         {
-            var builder = new DbContextOptionsBuilder<DB>();
-            builder.UseInMemoryDatabase("VivesBlog");
-            _database = new DB(builder.Options);
-            if (!_database.Articles.Any())
-            {
-                _database.Seed();
-            }
+            _dbService = service;
         }
 
 
         public IActionResult Index()
         {
-            var articles = _database.Articles
-                .Include(a => a.Author)
-                .ToList();
+            var articles = _dbService.GetArticles();
             return View(articles);
         }
 
         public IActionResult Details(int id)
         {
-            var article = _database.Articles
-                .Include(a => a.Author)
-                .SingleOrDefault(a => a.Key == id);
+            var article = _dbService.GetArticle(id);
 
             return View(article);
         }
@@ -41,7 +28,7 @@ namespace VivesBlog.Controllers
         [HttpGet("People/Index")]
         public IActionResult PeopleIndex()
         {
-            var people = _database.People.ToList();
+            var people = _dbService.GetPeople();
             return View(people);
         }
 
@@ -58,8 +45,7 @@ namespace VivesBlog.Controllers
             {
                 return View(person);
             }
-            _database.People.Add(person);
-            _database.SaveChanges();
+            _dbService.AddPerson(person);
 
             return RedirectToAction("PeopleIndex");
         }
@@ -67,25 +53,20 @@ namespace VivesBlog.Controllers
         [HttpGet("People/Edit/{id}")]
         public IActionResult PeopleEdit(int id)
         {
-            var person = _database.People.Single(p => p.Id == id);
+            var person = _dbService.GetPerson(id);
 
             return View(person);
         }
 
         [HttpPost("People/Edit/{id}")]
-        public IActionResult PeopleEdit(Person person)
+        public IActionResult PeopleEdit(int id, Person person)
         {
             if (!ModelState.IsValid)
             {
                 return View(person);
             }
 
-            var dbPerson = _database.People.Single(p => p.Id == person.Id);
-
-            dbPerson.Name1 = person.Name1;
-            dbPerson.Name2 = person.Name2;
-
-            _database.SaveChanges();
+            _dbService.UpdatePerson(id, person);
 
             return RedirectToAction("PeopleIndex");
         }
@@ -93,7 +74,7 @@ namespace VivesBlog.Controllers
         [HttpGet("People/Delete/{id}")]
         public IActionResult PeopleDelete(int id)
         {
-            var person = _database.People.Single(p => p.Id == id);
+            var person = _dbService.GetPerson(id);
 
             return View(person);
         }
@@ -101,11 +82,7 @@ namespace VivesBlog.Controllers
         [HttpPost("People/Delete/{id}")]
         public IActionResult PeopleDeleteConfirmed(int id)
         {
-            var dbPerson = _database.People.Single(p => p.Id == id);
-
-            _database.People.Remove(dbPerson);
-
-            _database.SaveChanges();
+            _dbService.DeletePerson(id);
 
             return RedirectToAction("PeopleIndex");
         }
@@ -113,9 +90,7 @@ namespace VivesBlog.Controllers
         [HttpGet("Blog/Index")]
         public IActionResult BlogIndex()
         {
-            var articles = _database.Articles
-                .Include(a => a.Author)
-                .ToList();
+            var articles = _dbService.GetArticles();
             return View(articles);
         }
 
@@ -136,11 +111,7 @@ namespace VivesBlog.Controllers
                 return View(articleModel);
             }
 
-            article.CreatedDate = DateTime.Now;
-
-            _database.Articles.Add(article);
-
-            _database.SaveChanges();
+            _dbService.AddArticle(article);
 
             return RedirectToAction("BlogIndex");
         }
@@ -148,7 +119,7 @@ namespace VivesBlog.Controllers
         [HttpGet("Blog/Edit/{id}")]
         public IActionResult BlogEdit(int id)
         {
-            var article = _database.Articles.Single(p => p.Key == id);
+            var article = _dbService.GetArticle(id);
 
             var articleModel = CreateArticleModel(article);
 
@@ -156,7 +127,7 @@ namespace VivesBlog.Controllers
         }
 
         [HttpPost("Blog/Edit/{id}")]
-        public IActionResult BlogEdit(Article article)
+        public IActionResult BlogEdit(int id, Article article)
         {
             if (!ModelState.IsValid)
             {
@@ -164,14 +135,7 @@ namespace VivesBlog.Controllers
                 return View(articleModel);
             }
 
-            var dbArticle = _database.Articles.Single(p => p.Key == article.Key);
-
-            dbArticle.Title = article.Title;
-            dbArticle.Description = article.Description;
-            dbArticle.Content = article.Content;
-            dbArticle.AuthorId = article.AuthorId;
-
-            _database.SaveChanges();
+            _dbService.UpdateArticle(id, article);
 
             return RedirectToAction("BlogIndex");
         }
@@ -179,9 +143,7 @@ namespace VivesBlog.Controllers
         [HttpGet("Blog/Delete/{id}")]
         public IActionResult BlogDelete(int id)
         {
-            var article = _database.Articles
-                .Include(a => a.Author)
-                .Single(p => p.Key == id);
+            var article = _dbService.GetArticle(id);
 
             return View(article);
         }
@@ -189,11 +151,7 @@ namespace VivesBlog.Controllers
         [HttpPost("Blog/Delete/{id}")]
         public IActionResult BlogDeleteConfirmed(int id)
         {
-            var dbArticle = _database.Articles.Single(p => p.Key == id);
-
-            _database.Articles.Remove(dbArticle);
-
-            _database.SaveChanges();
+            _dbService.DeleteArticle(id);
 
             return RedirectToAction("BlogIndex");
         }
@@ -202,10 +160,7 @@ namespace VivesBlog.Controllers
         {
             article ??= new Article();
 
-            var authors = _database.People
-                .OrderBy(a => a.Name1)
-                .ThenBy(a => a.Name2)
-                .ToList();
+            var authors = _dbService.GetPeopleOrderd();
 
             var articleModel = new ArticleModel
             {
