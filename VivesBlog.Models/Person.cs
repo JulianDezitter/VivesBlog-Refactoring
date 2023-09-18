@@ -4,7 +4,6 @@ namespace VivesBlog.Models
 {
     public class Person
     {
-        [Key]
         public int Id { get; set; }
 
         [Required]

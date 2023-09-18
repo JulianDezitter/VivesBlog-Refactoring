@@ -37,12 +37,12 @@ public class DbService
         _database.SaveChanges();
     }
 
-    public Person UpdatePerson(int id, Person person)
+    public Person? UpdatePerson(int id, Person person)
     {
         return _database.People.Single(p => p.Id == id);
     }
 
-    public Person GetPerson(int id)
+    public Person? GetPerson(int id)
     {
         return _database.People.Single(p => p.Id == id);
     }
@@ -65,7 +65,7 @@ public class DbService
         _database.SaveChanges();
     }
 
-    public Article UpdateArticle(int id, Article article)
+    public Article? UpdateArticle(int id, Article article)
     {
         var dbArticle = _database.Articles.Single(p => p.Id == id);
 
