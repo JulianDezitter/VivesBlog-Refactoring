@@ -17,6 +17,7 @@ public class Article
     public string Content { get; set; }
 
     [Required]
+    [Display(Name = "Author")]
     public int AuthorId { get; set; }
 
     public Person? Author { get; set; }
