@@ -1,4 +1,4 @@
-﻿@model VivesBlog.Models.Article
+﻿@model Article
 
 <article class="card">
 	<header class="card-header">
@@ -9,7 +9,7 @@
 	</p>
 	<footer class="card-footer">
 		<a class="btn btn-primary" asp-area="" 
-		   asp-controller="Home" 
+		   asp-controller="Article" 
 		   asp-action="Details" 
 		   asp-route-id="@Model.Id">
 			Read more...
