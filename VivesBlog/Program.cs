@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.EntityFrameworkCore;
 using VivesBlog;
+using VivesBlog.Core;
+using VivesBlog.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<DB>(options =>
+builder.Services.AddDbContext<VivesBlogDbContext>(options =>
 {
     options.UseInMemoryDatabase("VivesBlog");
 });
@@ -27,7 +26,7 @@ if (!app.Environment.IsDevelopment())
 else
 {
     var scope = app.Services.CreateScope();
-    var database = scope.ServiceProvider.GetRequiredService<DB>();
+    var database = scope.ServiceProvider.GetRequiredService<VivesBlogDbContext>();
     database.Seed();
 }
 

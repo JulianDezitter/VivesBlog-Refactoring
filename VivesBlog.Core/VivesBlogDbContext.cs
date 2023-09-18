@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
+using VivesBlog.Models;
 
-namespace VivesBlog
+namespace VivesBlog.Core
 {
-    public class DB : DbContext
+    public class VivesBlogDbContext : DbContext
     {
 
-        public DB(DbContextOptions<DB> options) : base(options)
+        public VivesBlogDbContext(DbContextOptions<VivesBlogDbContext> options) : base(options)
         {
         }
 
@@ -21,8 +21,8 @@ namespace VivesBlog
                 return;
             }
 
-            var bavoAuthor = new Person { Id = 1, Name1 = "Bavo", Name2 = "Ketels" };
-            var johnAuthor = new Person { Id = 2, Name1 = "John", Name2 = "Doe" };
+            var bavoAuthor = new Person { Id = 1, FirstName = "Bavo", LastName = "Ketels" };
+            var johnAuthor = new Person { Id = 2, FirstName = "John", LastName = "Doe" };
 
             People.Add(bavoAuthor);
             People.Add(johnAuthor);

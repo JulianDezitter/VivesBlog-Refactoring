@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31702.278
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivesBlog", "VivesBlog\VivesBlog.csproj", "{08F07C48-6869-4827-8D7B-CC6C77574599}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivesBlog.Mvc", "VivesBlog\VivesBlog.Mvc.csproj", "{08F07C48-6869-4827-8D7B-CC6C77574599}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivesBlog.Models", "VivesBlog.Models\VivesBlog.Models.csproj", "{BA066B94-0EA3-4D58-BD0B-54F381183EC9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivesBlog.Services", "VivesBlog.Services\VivesBlog.Services.csproj", "{655731DD-56BB-4CA5-930F-9D07E7C1AB92}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivesBlog.Core", "VivesBlog.Core\VivesBlog.Core.csproj", "{BC764AFB-771A-48BE-B20C-9C8D4790FF67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{08F07C48-6869-4827-8D7B-CC6C77574599}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08F07C48-6869-4827-8D7B-CC6C77574599}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08F07C48-6869-4827-8D7B-CC6C77574599}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA066B94-0EA3-4D58-BD0B-54F381183EC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA066B94-0EA3-4D58-BD0B-54F381183EC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA066B94-0EA3-4D58-BD0B-54F381183EC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA066B94-0EA3-4D58-BD0B-54F381183EC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{655731DD-56BB-4CA5-930F-9D07E7C1AB92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{655731DD-56BB-4CA5-930F-9D07E7C1AB92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{655731DD-56BB-4CA5-930F-9D07E7C1AB92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{655731DD-56BB-4CA5-930F-9D07E7C1AB92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC764AFB-771A-48BE-B20C-9C8D4790FF67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC764AFB-771A-48BE-B20C-9C8D4790FF67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC764AFB-771A-48BE-B20C-9C8D4790FF67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC764AFB-771A-48BE-B20C-9C8D4790FF67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

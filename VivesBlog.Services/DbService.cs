@@ -1,14 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using VivesBlog.Core;
+using VivesBlog.Models;
 
-namespace VivesBlog;
+namespace VivesBlog.Services;
 public class DbService
 {
-    private readonly DB _database;
+    private readonly VivesBlogDbContext _database;
 
-    public DbService(DB database)
+    public DbService(VivesBlogDbContext database)
     {
         _database = database;
     }
@@ -20,7 +19,7 @@ public class DbService
             .ToList();
     }
 
-    public Article GetArticle(int id)
+    public Article? GetArticle(int id)
     {
         return _database.Articles
             .Include(a => a.Author)
@@ -89,11 +88,11 @@ public class DbService
         _database.SaveChanges();
     }
 
-    public IList<Person> GetPeopleOrderd()
+    public IList<Person> GetPeopleOrdered()
     {
         return _database.People
-            .OrderBy(a => a.Name1)
-            .ThenBy(a => a.Name2)
+            .OrderBy(a => a.FirstName)
+            .ThenBy(a => a.LastName)
             .ToList();
     }
 }

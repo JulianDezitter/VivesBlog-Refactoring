@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using VivesBlog.Models;
+using VivesBlog.Services;
 
-namespace VivesBlog.Controllers
+namespace VivesBlog.Mvc.Controllers
 {
     public class HomeController : Controller
     {
@@ -10,7 +12,6 @@ namespace VivesBlog.Controllers
         {
             _dbService = service;
         }
-
 
         public IActionResult Index()
         {
@@ -156,11 +157,11 @@ namespace VivesBlog.Controllers
             return RedirectToAction("BlogIndex");
         }
 
-        private ArticleModel CreateArticleModel(Article article = null)
+        private ArticleModel CreateArticleModel(Article? article = null)
         {
             article ??= new Article();
 
-            var authors = _dbService.GetPeopleOrderd();
+            var authors = _dbService.GetPeopleOrdered();
 
             var articleModel = new ArticleModel
             {
