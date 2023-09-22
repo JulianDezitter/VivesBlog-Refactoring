@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivesBlog.Services", "Vives
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivesBlog.Core", "VivesBlog.Core\VivesBlog.Core.csproj", "{BC764AFB-771A-48BE-B20C-9C8D4790FF67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivesBlog.ServiceAbstractions", "ServiceAbstractions\VivesBlog.ServiceAbstractions.csproj", "{92C20248-6B48-4774-B694-4F5A7197578F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceAbstractions", "ServiceAbstractions\ServiceAbstractions.csproj", "{92C20248-6B48-4774-B694-4F5A7197578F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

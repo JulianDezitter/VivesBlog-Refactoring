@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ServiceAbstractions\VivesBlog.ServiceAbstractions.csproj" />
+    <ProjectReference Include="..\ServiceAbstractions\ServiceAbstractions.csproj" />
     <ProjectReference Include="..\VivesBlog.Core\VivesBlog.Core.csproj" />
     <ProjectReference Include="..\VivesBlog.Models\VivesBlog.Models.csproj" />
   </ItemGroup>
