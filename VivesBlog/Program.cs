@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VivesBlog;
 using VivesBlog.Core;
 using VivesBlog.Services;
 
@@ -12,7 +11,7 @@ builder.Services.AddDbContext<VivesBlogDbContext>(options =>
     options.UseInMemoryDatabase("VivesBlog");
 });
 
-builder.Services.AddScoped<DbService>();
+builder.Services.AddScoped<IVivesBlogDbService, VivesBlogDbService>();
 
 var app = builder.Build();
 

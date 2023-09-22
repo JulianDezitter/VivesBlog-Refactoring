@@ -1,21 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using VivesBlog.Models;
 using VivesBlog.Services;
 
 namespace VivesBlog.Mvc.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly DbService _dbService;
+        private readonly IVivesBlogDbService _vivesBlogDbService;
 
-        public HomeController(DbService service)
+        public HomeController(IVivesBlogDbService service)
         {
-            _dbService = service;
+            _vivesBlogDbService = service;
         }
 
         public IActionResult Index()
         {
-            var articles = _dbService.GetArticles();
+            var articles = _vivesBlogDbService.GetArticles();
             return View(articles);
         }
     }

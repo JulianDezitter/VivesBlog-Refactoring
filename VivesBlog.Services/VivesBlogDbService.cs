@@ -3,11 +3,11 @@ using VivesBlog.Core;
 using VivesBlog.Models;
 
 namespace VivesBlog.Services;
-public class DbService
+public class VivesBlogDbService : IVivesBlogDbService
 {
     private readonly VivesBlogDbContext _database;
 
-    public DbService(VivesBlogDbContext database)
+    public VivesBlogDbService(VivesBlogDbContext database)
     {
         _database = database;
     }
@@ -39,17 +39,17 @@ public class DbService
 
     public Person? UpdatePerson(int id, Person person)
     {
-        return _database.People.Single(p => p.Id == id);
+        return _database.People.SingleOrDefault(p => p.Id == id);
     }
 
     public Person? GetPerson(int id)
     {
-        return _database.People.Single(p => p.Id == id);
+        return _database.People.SingleOrDefault(p => p.Id == id);
     }
 
     public void DeletePerson(int id)
     {
-        var dbPerson = _database.People.Single(p => p.Id == id);
+        var dbPerson = _database.People.SingleOrDefault(p => p.Id == id);
 
         _database.People.Remove(dbPerson);
 
@@ -67,7 +67,7 @@ public class DbService
 
     public Article? UpdateArticle(int id, Article article)
     {
-        var dbArticle = _database.Articles.Single(p => p.Id == id);
+        var dbArticle = _database.Articles.SingleOrDefault(p => p.Id == id);
 
         dbArticle.Title = article.Title;
         dbArticle.Description = article.Description;
@@ -81,7 +81,7 @@ public class DbService
 
     public void DeleteArticle(int id)
     {
-        var dbArticle = _database.Articles.Single(p => p.Id == id);
+        var dbArticle = _database.Articles.SingleOrDefault(p => p.Id == id);
 
         _database.Articles.Remove(dbArticle);
 

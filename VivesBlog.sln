@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivesBlog.Services", "Vives
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivesBlog.Core", "VivesBlog.Core\VivesBlog.Core.csproj", "{BC764AFB-771A-48BE-B20C-9C8D4790FF67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceAbstractions", "ServiceAbstractions\ServiceAbstractions.csproj", "{92C20248-6B48-4774-B694-4F5A7197578F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BC764AFB-771A-48BE-B20C-9C8D4790FF67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC764AFB-771A-48BE-B20C-9C8D4790FF67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC764AFB-771A-48BE-B20C-9C8D4790FF67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92C20248-6B48-4774-B694-4F5A7197578F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92C20248-6B48-4774-B694-4F5A7197578F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92C20248-6B48-4774-B694-4F5A7197578F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92C20248-6B48-4774-B694-4F5A7197578F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

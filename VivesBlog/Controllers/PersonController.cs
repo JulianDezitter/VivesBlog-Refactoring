@@ -6,17 +6,17 @@ namespace VivesBlog.Mvc.Controllers
 {
     public class PersonController : Controller
     {
-        private readonly DbService _dbService;
+        private readonly IVivesBlogDbService _vivesBlogDbService;
 
-        public PersonController(DbService dbService)
+        public PersonController(IVivesBlogDbService vivesBlogDbService)
         {
-            _dbService = dbService;
+            _vivesBlogDbService = vivesBlogDbService;
         }
 
         [HttpGet("People/Index")]
         public IActionResult Index()
         {
-            var people = _dbService.GetPeople();
+            var people = _vivesBlogDbService.GetPeople();
             return View(people);
         }
 
@@ -33,7 +33,7 @@ namespace VivesBlog.Mvc.Controllers
             {
                 return View(person);
             }
-            _dbService.AddPerson(person);
+            _vivesBlogDbService.AddPerson(person);
 
             return RedirectToAction("Index");
         }
@@ -41,7 +41,7 @@ namespace VivesBlog.Mvc.Controllers
         [HttpGet("People/Edit/{id}")]
         public IActionResult PeopleEdit(int id)
         {
-            var person = _dbService.GetPerson(id);
+            var person = _vivesBlogDbService.GetPerson(id);
 
             return View(person);
         }
@@ -54,7 +54,7 @@ namespace VivesBlog.Mvc.Controllers
                 return View(person);
             }
 
-            _dbService.UpdatePerson(id, person);
+            _vivesBlogDbService.UpdatePerson(id, person);
 
             return RedirectToAction("Index");
         }
@@ -62,7 +62,7 @@ namespace VivesBlog.Mvc.Controllers
         [HttpGet("People/Delete/{id}")]
         public IActionResult PeopleDelete(int id)
         {
-            var person = _dbService.GetPerson(id);
+            var person = _vivesBlogDbService.GetPerson(id);
 
             return View(person);
         }
@@ -70,7 +70,7 @@ namespace VivesBlog.Mvc.Controllers
         [HttpPost("People/Delete/{id}")]
         public IActionResult PeopleDeleteConfirmed(int id)
         {
-            _dbService.DeletePerson(id);
+            _vivesBlogDbService.DeletePerson(id);
 
             return RedirectToAction("Index");
         }

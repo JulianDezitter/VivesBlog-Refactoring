@@ -6,9 +6,9 @@ namespace VivesBlog.Mvc.Controllers
 {
     public class ArticleController : Controller
     {
-        private readonly DbService _dbService;
+        private readonly IVivesBlogDbService _dbService;
 
-        public ArticleController(DbService dbService)
+        public ArticleController(IVivesBlogDbService dbService)
         {
             _dbService = dbService;
         }
